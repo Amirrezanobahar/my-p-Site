@@ -28,24 +28,31 @@ function App() {
         <Section id="aboutMe" title="">
           <AboutMe />
         </Section>
+
         <Section id="value" title="">
           <Value />
         </Section>
+
         <Section id="meService" title="">
           <MeService />
         </Section>
+
         <Section id="txt" title="">
           <Txt />
         </Section>
+
         <Section id="designContent" title="">
           <DesignContent/>
         </Section>
+
         <Section id="creativity" title="">
          <Creativity/>
         </Section>
+
         <Section id="pricingPlans" title="">
          <PricingPlans/>
         </Section>
+
         <Section id="contactForm" title="">
          <ContactForm/>
         </Section>
