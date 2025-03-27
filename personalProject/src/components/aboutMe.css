@@ -1,0 +1,153 @@
+.aboutMe {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.aboutMeContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 20px;
+    padding: 60px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 0 10px rgba(128, 128, 128, 0.4);
+    position: relative;
+    gap: 40px;
+}
+
+.aboutMeContainer .right {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    gap: 20px;
+    order: 2;
+}
+
+.aboutMeContainer .right h1 {
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.aboutMeContainer .right p {
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.aboutMeContainer .right .title {
+    position: absolute;
+    font-size: 1.3rem;
+    width: 180px;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color: black;
+    color: transparent;
+    box-shadow: 0 0 10px rgba(128, 128, 128, 0.4);
+}
+
+.aboutMeContainer .right .title::before {
+    content: attr(data-text);
+    background: linear-gradient(to top, #ff3366, #00ccff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+}
+
+.aboutMeContainer .left {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    order: 1;
+}
+
+.aboutMeContainer .left img {
+    width: 100%;
+    transform: scale(1.);
+    max-width: 300px !important;
+    object-fit: cover;
+    background-position: center;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* حالت تبلت */
+@media (min-width: 768px) {
+    .aboutMeContainer {
+        flex-direction: row;
+        padding: 60px 40px;
+        gap: 60px;
+    }
+
+    .aboutMeContainer .right {
+        padding: 0;
+        order: 1;
+        width: 60%;
+    }
+
+    .aboutMeContainer .right h1,
+    .aboutMeContainer .right p {
+        text-align: right;
+    }
+
+    .aboutMeContainer .right p {
+        width: 100%;
+    }
+
+    .aboutMeContainer .left {
+        order: 2;
+        width: 40%;
+    }
+
+    .aboutMeContainer .left img {
+        max-width: 100%;
+    }
+
+    .aboutMeContainer .right .title {
+        left: auto;
+        right: 42%;
+        transform: none;
+    }
+
+    .aboutMeContainer .right .title::before {
+        left: auto;
+        right: 0;
+        transform: translateY(-50%);
+    }
+}
+
+/* حالت دسکتاپ */
+@media (min-width: 1024px) {
+    .aboutMeContainer {
+        padding: 80px 60px;
+    }
+
+    .aboutMeContainer .right h1 {
+        font-size: 2.2rem;
+    }
+
+    .aboutMeContainer .right p {
+        font-size: 1.1rem;
+    }
+
+    .aboutMeContainer .right .title {
+        font-size: 1.5rem;
+        width: 220px;
+    }
+}

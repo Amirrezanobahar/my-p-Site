@@ -1,0 +1,36 @@
+@font-face {
+    font-family: iranSansSolid;
+    src: url(./fonts/IRANSansWeb.woff2);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    direction: rtl;
+    color: #fff;
+    font-family: iranSansSolid;
+}
+
+html, body {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+html::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./images/background/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.90;
+    z-index: -1;
+    filter: brightness(0.4) contrast(1.2);
+    pointer-events: none;
+}

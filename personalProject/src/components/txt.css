@@ -1,0 +1,131 @@
+.txt {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: right;
+    height:700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .txt h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #3B82F6, #A855F7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1.5rem;
+  }
+  
+  .txt p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .btnContainer {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+  }
+  
+  .btnContainer button {
+    position: relative;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    z-index: 1;
+    border: none;
+  }
+  
+  /* دکمه اول (رنگین) */
+  .btnContainer button:first-child {
+    background: linear-gradient(45deg, #3B82F6, #A855F7);
+    color: white;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  }
+  
+  .btnContainer button:first-child:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+  }
+  
+  .btnContainer button:first-child::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #A855F7, #3B82F6);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+  
+  .btnContainer button:first-child:hover::before {
+    opacity: 1;
+  }
+  
+  /* دکمه دوم (شفاف) */
+  .btnContainer button:last-child {
+    background: transparent;
+    color: #3B82F6;
+    border: 2px solid #3B82F6;
+  }
+  
+  .btnContainer button:last-child:hover {
+    background: rgba(59, 130, 246, 0.1);
+    transform: translateY(-3px);
+  }
+  
+  .btnContainer button:last-child::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(59, 130, 246, 0.2);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+  
+  .btnContainer button:last-child:hover::before {
+    opacity: 1;
+  }
+  
+  /* افکت کلیک */
+  .btnContainer button:active {
+    transform: translateY(1px);
+  }
+  
+  /* نسخه موبایل */
+  @media (max-width: 768px) {
+    .txt {
+      padding: 1.5rem;
+    }
+    
+    .txt h1 {
+      font-size: 2rem;
+    }
+    
+    .btnContainer {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    
+    .btnContainer button {
+      width: 100%;
+      padding: 0.8rem;
+    }
+  }

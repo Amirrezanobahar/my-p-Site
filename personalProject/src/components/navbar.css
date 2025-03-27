@@ -1,0 +1,73 @@
+:root {
+  --gradient-start: #db275a;
+  --gradient-end: #2014ff;
+  --icon-color: rgba(255, 255, 255, 0.9);
+  --icon-active-color: white;
+  --glass-color: rgba(255, 255, 255, 0.15);
+}
+
+.navbar-glass {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(124deg, var(--gradient-start), var(--gradient-end));
+  border-radius: 25px;
+  padding: 8px 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  width: 96%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--icon-color);
+  font-size: 1.1rem;
+  background: var(--glass-color);
+  transition: all 0.3s ease;
+}
+
+.nav-icon.active {
+  background: rgba(255, 255, 255, 0.3);
+  color: var(--icon-active-color);
+}
+
+/* رسپانسیو برای دستگاه‌های کوچک */
+@media (max-width: 400px) {
+  .navbar-glass {
+    padding: 6px 10px;
+    border-radius: 20px;
+  }
+  
+  .nav-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}
+
+/* حالت افقی برای دستگاه‌های با ارتفاع کم */
+@media (max-height: 500px) {
+  .navbar-glass {
+    top: 5px;
+    bottom: auto;
+    width: 98%;
+    padding: 5px 10px;
+  }
+}

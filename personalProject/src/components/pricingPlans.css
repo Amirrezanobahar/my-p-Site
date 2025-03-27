@@ -1,0 +1,166 @@
+/* استایل‌های اصلی */
+.pricing-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    direction: rtl;
+    flex-wrap: wrap;
+    /* حذف background-color */
+  }
+
+  .plan-card {
+    width: 350px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .plan-card:nth-child(1) .plan-header .plan-title {
+    color: #e000ff;
+  }
+  
+  .plan-card:nth-child(2) .plan-header .plan-title {
+    background-image: linear-gradient(320deg, var(--one-color), var(--second-color), var(--plan3-color));
+  }
+  
+  .plan-card:nth-child(3) .plan-header .plan-title {
+    color: #00ff3c;
+  }
+  .plan-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+  
+  .plan-header {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 1rem;
+  }
+  
+  .plan-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgb(118, 7, 197);
+    text-shadow: 0px 1px 1px rgb(165, 154, 154);
+    margin-bottom: 0.5rem;
+  }
+  
+  .plan-description {
+    color: rgba(191, 193, 192, 0.8);
+    text-shadow: 0px 1px 1px rgb(31, 28, 28);
+
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  .plan-features {
+    list-style: none;
+    text-shadow: 0px 1px 1px rgb(31, 28, 28);
+
+    padding: 0;
+    margin: 1.5rem 0;
+  }
+  
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    color: #f8eaf5;
+  }
+  
+  .feature-icon {
+    color: #021c0d;
+    background-color:  #2ecc71;
+    text-shadow: 0px 1px 1px rgb(31, 28, 28);
+
+    font-size: 1.2rem;
+  }
+  
+  .plan-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 1rem;
+  }
+  
+  .plan-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: rgb(46, 222, 11);
+    text-align: center;
+  }
+  
+  .plan-actions {
+    display: flex;
+    gap: 0.8rem;
+  }
+  
+  .plan-button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    backdrop-filter: blur(5px);
+  }
+  
+  .plan-button.secondary {
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+  }
+  
+  .plan-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
+  
+  .button-icon {
+    font-size: 1rem;
+  }
+  
+  /* افکت‌های نور */
+  .pricing-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background: linear-gradient(135deg, #3B82F6, #A855F7); */
+    z-index: -1;
+  }
+  
+  /* رسپانسیو */
+  @media (max-width: 768px) {
+    .pricing-container {
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+    
+    .plan-card {
+      width: 100%;
+      max-width: 400px;
+    }
+  }
