@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './contact.css';
+import swal from 'sweetalert';
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({
@@ -14,6 +15,20 @@ const ContactForm = () => {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
+
+    // Service type options with Persian labels
+    const serviceOptions = [
+        { value: 'standard', label: 'استاندارد' },
+        { value: 'premium', label: 'پریمیوم' },
+        { value: 'professional', label: 'حرفه‌ای' }
+    ];
+
+    // Contact method options with Persian labels
+    const contactMethodOptions = [
+        { value: 'sms', label: 'پیامک' },
+        { value: 'whatsapp', label: 'واتساپ' },
+        { value: 'telegram', label: 'تلگرام' }
+    ];
 
     const validatePhone = (phone) => /^09[0-9]{9}$/.test(phone);
 
@@ -69,7 +84,7 @@ const ContactForm = () => {
         setSubmitSuccess(false);
 
         try {
-            await axios.post('https://amirrezasite.liara.run/contact/message', {
+            const response = await axios.post('https://amirrezasite.liara.run/contact/message', {
                 fullName: formData.fullName,
                 phone: formData.phone,
                 Service: formData.serviceType,
@@ -77,20 +92,32 @@ const ContactForm = () => {
                 relation: formData.contactMethod
             });
 
-            setSubmitSuccess(true);
-            setFormData({
-                fullName: '',
-                phone: '',
-                serviceType: 'standard',
-                message: '',
-                contactMethod: 'sms'
-            });
-
-            // Reset success message after 5 seconds
-            setTimeout(() => setSubmitSuccess(false), 5000);
+            if (response.status === 200) {
+                swal({
+                    title: "موفقیت آمیز",
+                    text: "پیام شما با موفقیت ارسال شد",
+                    icon: "success",
+                    button: "باشه",
+                    timer: 3000
+                });
+                
+                setSubmitSuccess(true);
+                setFormData({
+                    fullName: '',
+                    phone: '',
+                    serviceType: 'standard',
+                    message: '',
+                    contactMethod: 'sms'
+                });
+            }
         } catch (error) {
             console.error('Error:', error);
-            alert('خطا در ارسال پیام! لطفاً دوباره تلاش کنید.');
+            swal({
+                title: "خطا",
+                text: "خطا در ارسال پیام! لطفاً دوباره تلاش کنید.",
+                icon: "error",
+                button: "متوجه شدم"
+            });
         } finally {
             setIsSubmitting(false);
         }
@@ -123,7 +150,7 @@ const ContactForm = () => {
                         <i className="fas fa-phone"></i>
                         <a href="tel:+989011499975">9975 149 0901</a>
                     </div>
-                    <p>حد اکثر تا 12 ساعت پاسخ خواهیم داد.</p>
+                    <p>حداکثر تا 12 ساعت پاسخ خواهیم داد.</p>
                 </div>
 
                 <div className="contact-container">
@@ -140,28 +167,32 @@ const ContactForm = () => {
 
                     <form onSubmit={handleSubmit} className="contact-form" noValidate>
                         <div className="form-group">
-                            <label>نام و نام خانوادگی</label>
+                            <label htmlFor="fullName">نام و نام خانوادگی</label>
                             <input
                                 type="text"
+                                id="fullName"
                                 name="fullName"
                                 value={formData.fullName}
                                 onChange={handleChange}
                                 placeholder="نام و نام خانوادگی خود را وارد کنید"
                                 className={errors.fullName ? 'error' : ''}
+                                autoComplete="name"
                             />
                             {errors.fullName && <span className="error-message">{errors.fullName}</span>}
                         </div>
 
                         <div className="form-group">
-                            <label>شماره همراه</label>
+                            <label htmlFor="phone">شماره همراه</label>
                             <input
                                 type="tel"
+                                id="phone"
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleChange}
                                 placeholder="09xxxxxxxxx"
                                 maxLength="11"
                                 className={errors.phone ? 'error' : ''}
+                                autoComplete="tel"
                             />
                             {errors.phone && <span className="error-message">{errors.phone}</span>}
                         </div>
@@ -169,28 +200,25 @@ const ContactForm = () => {
                         <div className="form-group">
                             <label>نوع خدماتی که می‌خواهید رو انتخاب کنید</label>
                             <div className="radio-group">
-                                {['standard', 'premium', 'professional'].map((type) => (
-                                    <label key={type}>
+                                {serviceOptions.map((option) => (
+                                    <label key={option.value}>
                                         <input
                                             type="radio"
                                             name="serviceType"
-                                            value={type}
-                                            checked={formData.serviceType === type}
+                                            value={option.value}
+                                            checked={formData.serviceType === option.value}
                                             onChange={handleChange}
                                         />
-                                        <span>
-                                            {type === 'standard' && 'استاندارد'}
-                                            {type === 'premium' && 'پریمیوم'}
-                                            {type === 'professional' && 'حرفه‌ای'}
-                                        </span>
+                                        <span>{option.label}</span>
                                     </label>
                                 ))}
                             </div>
                         </div>
 
                         <div className="form-group">
-                            <label>درباره شما و پروژه‌تون بگید</label>
+                            <label htmlFor="message">درباره شما و پروژه‌تون بگید</label>
                             <textarea
+                                id="message"
                                 name="message"
                                 value={formData.message}
                                 onChange={handleChange}
@@ -204,20 +232,16 @@ const ContactForm = () => {
                         <div className="form-group">
                             <label>در کجا می‌توانیم ارتباط بگیریم؟</label>
                             <div className="radio-group">
-                                {['sms', 'whatsapp', 'telegram'].map((method) => (
-                                    <label key={method}>
+                                {contactMethodOptions.map((option) => (
+                                    <label key={option.value}>
                                         <input
                                             type="radio"
                                             name="contactMethod"
-                                            value={method}
-                                            checked={formData.contactMethod === method}
+                                            value={option.value}
+                                            checked={formData.contactMethod === option.value}
                                             onChange={handleChange}
                                         />
-                                        <span>
-                                            {method === 'sms' && 'SMS'}
-                                            {method === 'whatsapp' && 'WhatsApp'}
-                                            {method === 'telegram' && 'Telegram'}
-                                        </span>
+                                        <span>{option.label}</span>
                                     </label>
                                 ))}
                             </div>
@@ -228,8 +252,17 @@ const ContactForm = () => {
                             className={`submit-btn ${isSubmitting ? 'submitting' : ''}`}
                             disabled={isSubmitting}
                         >
-                            <i className="fas fa-paper-plane"></i>
-                            {isSubmitting ? 'در حال ارسال...' : 'ارسال پیام'}
+                            {isSubmitting ? (
+                                <>
+                                    <i className="fas fa-spinner fa-spin"></i>
+                                    در حال ارسال...
+                                </>
+                            ) : (
+                                <>
+                                    <i className="fas fa-paper-plane"></i>
+                                    ارسال پیام
+                                </>
+                            )}
                         </button>
                     </form>
                 </div>
