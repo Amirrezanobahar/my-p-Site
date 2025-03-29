@@ -42,23 +42,27 @@ function App() {
         </Section>
 
         <Section id="designContent" title="">
-          <DesignContent/>
+          <DesignContent />
         </Section>
 
         <Section id="creativity" title="">
-         <Creativity/>
+          <Creativity />
         </Section>
 
         <Section id="pricingPlans" title="">
-         <PricingPlans/>
+          <PricingPlans />
         </Section>
 
         <Section id="contactForm" title="">
-         <ContactForm/>
+          <ContactForm />
         </Section>
 
       </div>
 
+// func // // // // *fs
+const kir=()=>{
+        console.log('hello')
+      }
 
     </>
   )
